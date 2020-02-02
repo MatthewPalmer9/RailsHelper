@@ -57,7 +57,7 @@ show.html.erb
 ```
 
 The most important thing to understand here is that 'link_to' is going to create
-and "<a>" tag with a href attribute equal to the student id by using 'student_path(student)'.
+an "< a >" tag with a href attribute equal to the student id by using 'student_path(student)'.
 
 ```
 # Example Output:
