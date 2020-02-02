@@ -2,7 +2,7 @@
 A README.md to keep personal notes for myself about Rails.
 
 # How To Start a New Rails
-type 'rails new app-name'
+type `rails new app-name`
 
 # Rails form_tag And How To Use It
 ```
@@ -19,7 +19,7 @@ type 'rails new app-name'
   <%= params.inspect %>
 <%end%>
 ```
-Here, we are setting the name= and id= in the form to correct naming parameters.
+Here, we are setting the `name=` and `id=` in the form to correct naming parameters.
 These parameters are passed into the create method in a student_controller.rb
 Looks like this:
 ```
@@ -56,8 +56,8 @@ show.html.erb
 </div>
 ```
 
-The most important thing to understand here is that 'link_to' is going to create
-an "< a >" tag with a href attribute equal to the student id by using 'student_path(student)'.
+The most important thing to understand here is that `link_to` is going to create
+an `<a>` tag with a href attribute equal to the student id by using `student_path(student)`.
 
 ```
 # Example Output:
