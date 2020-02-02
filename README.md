@@ -5,7 +5,7 @@ A README.md to keep personal notes for myself about Rails.
 type `rails new app-name`
 
 # Rails form_tag And How To Use It
-```
+```ruby
 <h1>Student Form</h1>
 <%=form_tag students_path do%>
   <label>First Name</label><br>
