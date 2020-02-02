@@ -37,3 +37,30 @@ Rails.application.routes.draw do
   resources :students, only: [:index, :new, :create, :show, :edit, :destroy]
 end
 ```
+
+# Views
+Each view needs to be named according to the set route/HTTP verbs & naming convention
+```
+#Examples
+index.html.erb
+new.html.erb
+show.html.erb
+```
+
+# How To Use link_to To Access /object_path/:id
+```
+<div>
+  <% @students.each do |student| %>
+    <div><%= link_to student.to_s, student_path(student) %></div>
+  <% end %>
+</div>
+```
+
+The most important thing to understand here is that 'link_to' is going to create
+and <a> tag with a href attribute equal to the student id by using 'student_path(student)'.
+Example Output:
+```
+<div>
+    <div><a href="/students/1">Scotty Ruth</a></div>
+</div>
+```
