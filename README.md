@@ -22,7 +22,7 @@ type `rails new app-name`
 Here, we are setting the `name=` and `id=` in the form to correct naming parameters.
 These parameters are passed into the create method in a student_controller.rb
 Looks like this:
-```
+```ruby
 def create
   @student = Student.create(first_name: params[:student][:first_name], last_name: params[:student][:last_name])
   @student.save
@@ -32,7 +32,7 @@ end
 
 # How to Set Routes
 Go to YourAppName/config/routes.rb and apply this code:
-```
+```ruby
 Rails.application.routes.draw do
   resources :students, only: [:index, :new, :create, :show, :edit, :destroy]
 end
@@ -40,7 +40,7 @@ end
 
 # Views
 Each view needs to be named according to the set route/HTTP verbs & naming convention
-```
+```ruby
 #Examples
 index.html.erb
 new.html.erb
@@ -48,7 +48,7 @@ show.html.erb
 ```
 
 # How To Use link_to To Access /object_path/:id
-```
+```ruby
 <div>
   <% @students.each do |student| %>
     <div><%= link_to student.to_s, student_path(student) %></div>
@@ -59,7 +59,7 @@ show.html.erb
 The most important thing to understand here is that `link_to` is going to create
 an `<a>` tag with a href attribute equal to the student id by using `student_path(student)`.
 
-```
+```ruby
 # Example Output:
 <div>
     <div><a href="/students/1">Scotty Ruth</a></div>
