@@ -12,6 +12,8 @@ type 'rails new app-name'
   <%=text_field_tag :'student[first_name]' %><br>
   <label>Last Name</label><br>
   <%=text_field_tag :'student[last_name]' %><br>
+
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%=submit_tag "Submit Student"%>
 
   <%= params.inspect %>
@@ -25,5 +27,13 @@ def create
   @student = Student.create(first_name: params[:student][:first_name], last_name: params[:student][:last_name])
   @student.save
   redirect_to student_path(@student)
+end
+```
+
+# How to Set Routes
+Go to YourAppName/config/routes.rb and apply this code:
+```
+Rails.application.routes.draw do
+  resources :students, only: [:index, :new, :create, :show, :edit, :destroy]
 end
 ```
