@@ -79,3 +79,4 @@ def create
   redirect_to student_path(@student)
 end
 ```
+In this refactored `create` action, we're following the convention of redirecting to the new resource's `show` page. It stands to reason that a user who submits a new post would then like to view the successfully-created post. 
