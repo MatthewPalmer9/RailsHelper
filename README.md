@@ -65,3 +65,17 @@ an `<a>` tag with a href attribute equal to the student id by using `student_pat
     <div><a href="/students/1">Scotty Ruth</a></div>
 </div>
 ```
+
+# How To Set a CREATE path without mapping to create.html.erb
+All  methods in Rails search for a `view` template. `def create` in our students_controller.rb
+will try to find `create.html.erb`. In order to avoid this and simply redirect a user, we use the `redirect_to` method in rails.
+```ruby
+#Example
+def create
+  @post = Post.new
+  @post.title = params[:title]
+  @post.description = params[:description]
+  @post.save
+  redirect_to post_path(@post)
+end
+```
