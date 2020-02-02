@@ -72,10 +72,10 @@ will try to find `create.html.erb`. In order to avoid this and simply redirect a
 ```ruby
 #Example
 def create
-  @post = Post.new
-  @post.title = params[:title]
-  @post.description = params[:description]
-  @post.save
-  redirect_to post_path(@post)
+  @student = Student.new
+  @student.first_name = params[:first_name]
+  @student.last_name = params[:last_name]
+  @student.save
+  redirect_to student_path(@student)
 end
 ```
