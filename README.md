@@ -35,6 +35,8 @@ Go to YourAppName/config/routes.rb and apply this code:
 ```ruby
 Rails.application.routes.draw do
   resources :students, only: [:index, :show, :new, :create, :edit, :update]
+  # Be sure not to add route resources like :edit and :update here to your resources if you are defining requests like below...
+  # vvv
   get 'students/:id/edit', to: 'students#edit', as: :edit_students
   patch 'students/:id', to: 'students#update'
 end
