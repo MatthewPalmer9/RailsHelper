@@ -30,21 +30,48 @@ def create
 end
 ```
 
-# How to Set Routes
+# How to Set Routes Using CRUD
 Go to YourAppName/config/routes.rb and apply this code:
 ```ruby
 Rails.application.routes.draw do
-  resources :students, only: [:index, :new, :create, :show, :edit, :destroy]
+  resources :students, only: [:index, :show, :new, :create, :edit, :update]
+  get 'students/:id/edit', to: 'students#edit', as: :edit_students
+  patch 'students/:id', to: 'students#update'
 end
 ```
+At this point, we want our `controller action` to reflect on these routes with corresponding methods...
+
+```ruby
+def edit
+  @student = Student.find(params[:id])
+end
+```
+
+Now that the `edit` view template will have access to the `Student` object (stored in @student), we need to refactor the form so that it auto-fills the form fields with the corresponding data from @student. We'll also use a different form helper, `form_for`, which will automatically set up the url where the form will be sent. These changes can be seen below:
+
+```ruby
+<% # app/views/students/edit.html.erb %>
+
+<%= form_for @student do |f| %>
+  <%= f.label 'Student First Name:' %><br>
+  <%= f.text_field :first_name %><br>
+
+  <%= f.label 'Student Last Name' %><br>
+  <%= f.text_area :last_name %><br>
+
+  <%= f.submit "Submit Student" %>
+<% end %>
+```
+In this case, `form_for` takes care of some work for us. Using the object @student we've provided, `form_for` determines that @student is not a new instance of the `Student` class. Because of this, `form_for` knows to automatically send to the `update` path.
 
 # Views
 Each view needs to be named according to the set route/HTTP verbs & naming convention
 ```ruby
 #Examples
 index.html.erb
-new.html.erb
 show.html.erb
+new.html.erb
+edit.html.erb
 ```
 
 # How To Use link_to To Access /object_path/:id
