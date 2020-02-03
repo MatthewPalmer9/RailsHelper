@@ -64,6 +64,16 @@ Now that the `edit` view template will have access to the `Student` object (stor
 ```
 In this case, `form_for` takes care of some work for us. Using the object @student we've provided, `form_for` determines that @student is not a new instance of the `Student` class. Because of this, `form_for` knows to automatically send to the `update` path.
 
+The `update` path will only work if the corresponding controller action reflects an update, as seen below:
+
+```ruby
+def update
+  @student = Student.find(params[:id])
+  @article.update(first_name: params[:student][:first_name], last_name: params[:student][:last_name])
+  redirect_to student_path(@article)
+end
+```
+
 # Views
 Each view needs to be named according to the set route/HTTP verbs & naming convention
 ```ruby
