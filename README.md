@@ -54,7 +54,7 @@ Now that the `edit` view template will have access to the `Student` object (stor
 ```ruby
 <% # app/views/students/edit.html.erb %>
 
-<%= form_for @student do |f| %>
+<%= form_for(@student) do |f| %>
   <%= f.label 'Student First Name:' %><br>
   <%= f.text_field :first_name %><br>
 
@@ -71,10 +71,28 @@ The `update` path will only work if the corresponding controller action reflects
 ```ruby
 def update
   @student = Student.find(params[:id])
-  @article.update(first_name: params[:student][:first_name], last_name: params[:student][:last_name])
+  # @article.update(first_name: params[:student][:first_name], last_name: params[:student][:last_name])
+  @student.update(params.require(:post).permit(:title, :description))
   redirect_to student_path(@article)
 end
 ```
+So then... with `@student.update`, this is a **tough** one to retain, but the purpose of needing to `require` the `post` model is because of this: The 'params' traditionally look like this:
+```ruby
+{
+  "first_name": "Scotty",
+  "last_name": "Ruth"
+}
+```
+But with `form_for`, our `params` now looks like this:
+```ruby
+{
+  "student": {
+            "first_name": "Scotty",
+            "last_name": "Ruth"
+          }
+}
+```
+Notice how the `:first_name` and `:last_name` attributes are now nested within the `student` hash? That's why we needed to add the require method. But Rails wants us to be conscious of which attributes we allow to be updated in our database, so we must also `permit` the `:first_name` and `:last_name` in the nested hash. Using strong parameters like this will allow ActiveRecord to use mass assignment without trouble.
 
 # Views
 Each view needs to be named according to the set route/HTTP verbs & naming convention
