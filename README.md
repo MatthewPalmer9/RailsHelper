@@ -94,6 +94,9 @@ But with `form_for`, our `params` now looks like this:
 ```
 Notice how the `:first_name` and `:last_name` attributes are now nested within the `student` hash? That's why we needed to add the require method. But Rails wants us to be conscious of which attributes we allow to be updated in our database, so we must also `permit` the `:first_name` and `:last_name` in the nested hash. Using strong parameters like this will allow ActiveRecord to use mass assignment without trouble.
 
+## Side Note on `form_for` and `form_tag`
+You only want to use `form_tag` syntax when creating a new object, but use `form_for` syntax when working with an object in the database that already exists. Like the difference between a `form_tag` in `new.html.erb` and the `form_for` in `edit.html.erb`.
+
 # Views
 Each view needs to be named according to the set route/HTTP verbs & naming convention
 ```ruby
