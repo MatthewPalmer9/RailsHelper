@@ -89,7 +89,7 @@ Now that the `edit` view template will have access to the `Student` object (stor
 <% end %>
 ```
 In this case, `form_for` takes care of some work for us. Using the object @student we've provided, `form_for` determines that @student is not a new instance of the `Student` class. Because of this, `form_for` knows to automatically send to the `update` path.
-
+**`form_for` is used when directly connected with an ActiveRecord model. In this case, it is student.rb.**
 The `update` path will only work if the corresponding controller action reflects an update, as seen below:
 
 ```ruby
