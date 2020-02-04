@@ -100,7 +100,7 @@ def update
   redirect_to student_path(@article)
 end
 ```
-So then... with `@student.update`, this is a **tough** one to retain, but the purpose of needing to `require` the `post` model is because of this: The 'params' traditionally look like this:
+So then... with `@student.update`, the purpose of needing to `require` the `post` model is because of this: The 'params' traditionally look like this:
 ```ruby
 {
   "first_name": "Scotty",
