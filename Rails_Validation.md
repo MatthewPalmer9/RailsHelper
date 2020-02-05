@@ -151,6 +151,14 @@ If you hit Refresh after rendering on a form submit, your browser gives you a po
 <% end %>
 ```
 
+The second argument to text_field_tag, as with most form tag helpers, is the "default" value.
+Below is an example of what the raw HTML would look like.
+
+```ruby
+Name: <input type="text" name="name" id="name" value="Jane Developer" /><br />
+Email: <input type="text" name="email" id="email" value="jane@developers.fake" />
+```
+
 
 # Custom Validators
 
@@ -162,7 +170,7 @@ Of the three, #validate is the simplest. If your validation needs become more co
 
 2. Identify the ActiveRecord attribute you want to validate. Is it the email or the last_name on the Person class, for example?
 
-3. Create a new file in the app/validators directory of the form attribute (from the previous step) + _validator.rb. So in the case of validating an attribute called email, create a file app/validators/email_validator.rb
+3. Create a new file in the app/validators directory of the form attribute (from the previous step) + `_validator.rb`. So in the case of validating an attribute called email, create a file app/validators/email_validator.rb
 
 4. Inside the new file, define the class. The class name should match the file name of the file, but "Camel-Cased." So email_validator should be class EmailValidator. The class should inherit from ActiveModel::Validator
 
@@ -196,3 +204,53 @@ end
 ```
 
 Here we validate that all email addresses are in the `railsgit.com` domain.
+
+# Displaying All Errors with `errors.full_messages`
+
+When a model fails validation, its `errors` attribute is filled with information about what went wrong. Rails creates an `ActiveModel::Errors` object to carry this information.
+
+The simplest way to show errors is to just spit them all out at the top of the form by iterating over `@person.errors.full_messages.` But first, we'll have to check whether there are errors to display with `@person.errors.any?`.
+```ruby
+<% if @person.errors.any? %>
+  <div id="error_explanation">
+    <h2>There were some errors:</h2>
+    <ul>
+      <% @person.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+```
+
+The whole picture comes down to this code snippet below:
+
+```ruby
+<%= form_tag("/people") do %>
+  <% if @person.errors.any? %>
+    <div id="error_explanation">
+      <h2>There were some errors:</h2>
+      <ul>
+        <% @person.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field<%= ' field_with_errors' if @person.errors[:name].any? %>">
+    <%= label_tag "name", "Name" %>
+    <%= text_field_tag "name", @person.name %>
+  </div>
+
+  <div class="field<%= ' field_with_errors' if @person.errors[:email].any? %>">
+    <%= label_tag "email", "Email" %>
+    <%= text_field_tag "email", @person.email %>
+  </div>
+
+  <%= submit_tag "Create" %>
+<% end %>
+```
+
+**It can get tedious dealing with `form_tag`. It is encouraged to use `form_for` soon to be explained below.**
