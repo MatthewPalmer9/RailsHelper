@@ -114,6 +114,14 @@ end
 
 `render` can be instructed to render the templates from other actions. In the above code, since we want the `:new` template from the same controller, we don't have to specify anything except the template name.
 
+Remember: **redirects incur a new page load**. When we redirect after validation failure, we **lose** the instance of `@post` that has feedback (messages for the user) in its `errors` attribute.
+
+Another way to differentiate redirects is this:
+
+If you hit Refresh after a redirect/page load, your browser resubmits the `GET` request without complaint.
+
+If you hit Refresh after rendering on a form submit, your browser gives you a popup to confirm that you want to resubmit form data with the `POST` request.
+
 
 # Custom Validators
 
