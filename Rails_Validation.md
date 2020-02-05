@@ -116,7 +116,7 @@ end
 
 Here is an example of what `def update` looks like with controller validations:
 ```ruby
-def update
+  def update
     if @post.update(post_params)
 
       redirect_to post_path(@post)
