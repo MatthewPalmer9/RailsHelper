@@ -140,6 +140,17 @@ If you hit Refresh after a redirect/page load, your browser resubmits the `GET` 
 
 If you hit Refresh after rendering on a form submit, your browser gives you a popup to confirm that you want to resubmit form data with the `POST` request.
 
+# Validations with Forms (`form_tag` and `form_for`)
+```ruby
+<!-- app/views/people/new.html.erb //-->
+
+<%= form_tag "/people" do %>
+  Name: <%= text_field_tag "name", @person.name %><br>
+  Email: <%= text_field_tag "email", @person.email %>
+  <%= submit_tag "Create Person" %>
+<% end %>
+```
+
 
 # Custom Validators
 
