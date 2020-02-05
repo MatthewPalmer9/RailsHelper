@@ -86,7 +86,7 @@ class Post < ActiveRecord::Base
 end
 ```
 
-#Validations in Controller Actions
+# Validations in Controller Actions
 ```ruby
 # app/controllers/posts_controller.rb
 
