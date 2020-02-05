@@ -114,6 +114,24 @@ end
 
 `render` can be instructed to render the templates from other actions. In the above code, since we want the `:new` template from the same controller, we don't have to specify anything except the template name.
 
+Here is an example of what `def update` looks like with controller validations:
+```ruby
+def update
+    if @post.update(post_params)
+
+      redirect_to post_path(@post)
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def post_params
+    params.permit(:category, :content, :title)
+  end
+```
+
 Remember: **redirects incur a new page load**. When we redirect after validation failure, we **lose** the instance of `@post` that has feedback (messages for the user) in its `errors` attribute.
 
 Another way to differentiate redirects is this:
