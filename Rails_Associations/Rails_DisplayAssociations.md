@@ -14,6 +14,9 @@ A great way to display your associations is getting a visual of how they work.
 
 The output of this `.erb` is:
 
-
-<h1>10 Ways You Are Already Awesome</h1>
+```
+10 Ways You Are Already Awesome
 Category: Motivation
+
+#Motivation being the link to something like /categories/2
+```
