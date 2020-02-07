@@ -205,52 +205,6 @@ end
 
 Here we validate that all email addresses are in the `railsgit.com` domain.
 
-# Displaying All Errors with `errors.full_messages`
 
-When a model fails validation, its `errors` attribute is filled with information about what went wrong. Rails creates an `ActiveModel::Errors` object to carry this information.
-
-The simplest way to show errors is to just spit them all out at the top of the form by iterating over `@person.errors.full_messages.` But first, we'll have to check whether there are errors to display with `@person.errors.any?`.
-```ruby
-<% if @person.errors.any? %>
-  <div id="error_explanation">
-    <h2>There were some errors:</h2>
-    <ul>
-      <% @person.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-```
-
-The whole picture comes down to this code snippet below:
-
-```ruby
-<%= form_tag("/people") do %>
-  <% if @person.errors.any? %>
-    <div id="error_explanation">
-      <h2>There were some errors:</h2>
-      <ul>
-        <% @person.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
-  <div class="field<%= ' field_with_errors' if @person.errors[:name].any? %>">
-    <%= label_tag "name", "Name" %>
-    <%= text_field_tag "name", @person.name %>
-  </div>
-
-  <div class="field<%= ' field_with_errors' if @person.errors[:email].any? %>">
-    <%= label_tag "email", "Email" %>
-    <%= text_field_tag "email", @person.email %>
-  </div>
-
-  <%= submit_tag "Create" %>
-<% end %>
-```
 
 **It can get tedious dealing with `form_tag`. It is encouraged to use `form_for` soon to be explained below.**
