@@ -14,11 +14,7 @@ A great way to display your associations is getting a visual of how they work.
 
 The output of this `.erb` is:
 
-```ruby
-
-```
-# 10 Ways You Are Already Awesome
-Category: <u>Motivation</u>
-```ruby
-
+```html
+<h1>10 Ways You Are Already Awesome</h1>
+Category: Motivation
 ```
