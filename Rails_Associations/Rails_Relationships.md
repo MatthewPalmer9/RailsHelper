@@ -1,4 +1,4 @@
-#The `has_many :objects, through: :another_object` Relationship
+# The `has_many :objects, through: :another_object` Relationship
 
 This relationship is particularly a difficult concept to grasp. For this example, let's use Taxis, Rides, and Passengers to help illustrate this concept. An important thing to understand about these types of relationships are that they work with **foreign keys** in your database.
 
