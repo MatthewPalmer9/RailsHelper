@@ -18,7 +18,7 @@ The output of this `.erb` is:
 
 ```
 # 10 Ways You Are Already Awesome
-## Category: <u>Motivation</u>
+Category: <u>Motivation</u>
 ```ruby
 
 ```
