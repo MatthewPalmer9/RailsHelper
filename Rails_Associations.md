@@ -20,7 +20,7 @@ This can be illustrated below:
 
 ```ruby
 class Student < ActiveRecord::Base
-  has_many :assignments
+  has_many :assignments 
 end
 ```
 
