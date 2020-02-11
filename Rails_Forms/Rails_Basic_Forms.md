@@ -82,6 +82,23 @@ Now that the `edit` view template will have access to the `Student` object (stor
   <%= f.submit "Submit Student" %>
 <% end %>
 ```
+Another variation of the form is this:
+```ruby
+<!-- app/views/posts/edit.html.erb -->
+
+<h3>Student Form</h3>
+
+<%= form_tag student_path(@student), method: "put" do %>
+  <label>Student first_name:</label><br>
+  <%= text_field_tag :first_name, @student.first_name %><br>
+
+  <label>Student last_name:</label><br>
+  <%= text_field_tag :last_name, @student.last_name %><br>
+
+  <%= submit_tag "Submit Student Edit" %>
+<% end %>
+```
+
 In this case, `form_for` takes care of some work for us. Using the object @student we've provided, `form_for` determines that @student is not a new instance of the `Student` class. Because of this, `form_for` knows to automatically send to the `update` path.
 **`form_for` is used when directly connected with an ActiveRecord model. In this case, it is student.rb.**
 The `update` path will only work if the corresponding controller action reflects an update, as seen below:
