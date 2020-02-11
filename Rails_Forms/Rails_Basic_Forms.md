@@ -99,7 +99,9 @@ Another variation of the form is this:
 <% end %>
 ```
 
-In this case, `form_for` takes care of some work for us. Using the object @student we've provided, `form_for` determines that @student is not a new instance of the `Student` class. Because of this, `form_for` knows to automatically send to the `update` path.
+**NOTE: A `new.html.erb` form would look the exact same, except that first line would be `<%= form_tag post_path do %>`. InTeReStInG...**
+
+In any case, `form_for` takes care of some work for us. Using the object @student we've provided, `form_for` determines that @student is not a new instance of the `Student` class. Because of this, `form_for` knows to automatically send to the `update` path.
 **`form_for` is used when directly connected with an ActiveRecord model. In this case, it is student.rb.**
 The `update` path will only work if the corresponding controller action reflects an update, as seen below:
 
