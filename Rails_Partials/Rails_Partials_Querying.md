@@ -59,4 +59,4 @@ Located below our field tags are where we render our partial with locals. (**Ple
 ```
 
 ## Conclusion
-Now we know how to query using partials with locals. It's a complicated process, and remembering how to write them is **hard**. Referencing either this guide or the Ruby Docs is perfectly acceptable.
+Now we know how to query using partials with locals. It's a complicated process, and remembering how to write them is **hard**. Referencing either this guide or the Ruby Docs is perfectly acceptable. The purpose here is incorporating things like search bars into our websites while keeping our code DRY.
